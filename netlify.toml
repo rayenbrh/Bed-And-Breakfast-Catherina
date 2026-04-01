@@ -1,0 +1,21 @@
+# Configuration Netlify — https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# SPA : les routes client renvoient index.html (recommandé si vous utilisez React Router en mode history).
+# Avec HashRouter (/#/), ce n’est pas obligatoire mais reste sans effet négatif.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Assets Vite avec hash dans le nom — cache long navigateur
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
