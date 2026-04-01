@@ -1,11 +1,14 @@
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
+import { useI18n } from '../../context/I18nContext'
 import { IMAGES } from '../../config/images'
-import { CONTENT } from '../../data/content'
+import { SITE_CONFIG } from '../../data/siteConfig'
 import { AnimatedButton } from '../ui/AnimatedButton'
 import { GlassCard } from '../ui/GlassCard'
 
 export function BookingSection() {
+  const { messages } = useI18n()
+  const b = messages.booking
   const ref = useRef(null)
   const reduced = useReducedMotion()
   const { scrollY } = useScroll({
@@ -37,7 +40,7 @@ export function BookingSection() {
       <motion.div style={{ y }} className="absolute inset-0 -z-10">
         <img
           src={IMAGES.ctaBg}
-          alt="B&B Catherina — ambiance pour réserver votre séjour"
+          alt={b.imageAlt}
           className="h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[var(--bg-start)]/95 via-[var(--bg-start)]/80 to-[var(--bg-end)]/90 dark:from-black/85 dark:via-black/70 dark:to-[#1a1208]/92" />
@@ -52,32 +55,32 @@ export function BookingSection() {
         >
           <GlassCard className="px-6 py-12 text-center md:px-14 md:py-16">
             <h2 className="font-display text-4xl font-semibold italic leading-tight text-[var(--text-primary)] md:text-5xl whitespace-pre-line">
-              {CONTENT.booking.title}
+              {b.title}
             </h2>
             <p className="mx-auto mt-6 max-w-2xl text-[var(--text-secondary)]">
-              {CONTENT.booking.subtitle.trim()}
+              {b.subtitle.trim()}
             </p>
 
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <span className="rounded-full border border-[var(--glass-border)] bg-white/15 px-5 py-2 text-sm text-[var(--text-primary)] dark:bg-white/5">
-                Check-in: {CONTENT.booking.checkIn}
+                {b.checkInLabel} {b.checkIn}
               </span>
               <span className="rounded-full border border-[var(--glass-border)] bg-white/15 px-5 py-2 text-sm text-[var(--text-primary)] dark:bg-white/5">
-                Check-out: {CONTENT.booking.checkOut}
+                {b.checkOutLabel} {b.checkOut}
               </span>
             </div>
 
             <AnimatedButton
-              href={CONTENT.booking.bookingUrl}
+              href={SITE_CONFIG.bookingUrl}
               className="mt-10 px-12 py-4 text-sm uppercase tracking-[0.2em]"
               target="_blank"
               rel="noreferrer"
             >
-              {CONTENT.booking.cta.toUpperCase()}
+              {b.cta.toUpperCase()}
             </AnimatedButton>
 
             <p className="mt-6 text-sm italic text-[var(--text-secondary)]">
-              {CONTENT.booking.note}
+              {b.note}
             </p>
           </GlassCard>
         </motion.div>

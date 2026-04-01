@@ -1,10 +1,11 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { CONTENT } from '../data/content'
+import { useI18n } from '../context/I18nContext'
 
 const KEY = 'bb-catherina-loaded'
 
 export function LoadingScreen({ children }) {
+  const { messages } = useI18n()
   const [show, setShow] = useState(() => {
     try {
       return !sessionStorage.getItem(KEY)
@@ -45,10 +46,10 @@ export function LoadingScreen({ children }) {
               className="text-center"
             >
               <p className="font-display text-4xl font-semibold italic text-[var(--text-primary)] md:text-5xl">
-                {CONTENT.brand.name}
+                {messages.brand.name}
               </p>
               <p className="mt-3 font-accent text-xs uppercase tracking-[0.4em] text-[var(--accent)]">
-                {CONTENT.brand.tagline}
+                {messages.brand.tagline}
               </p>
             </motion.div>
           </motion.div>

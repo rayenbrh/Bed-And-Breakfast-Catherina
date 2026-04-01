@@ -1,23 +1,24 @@
 import { motion, useReducedMotion } from 'framer-motion'
 import * as Icons from 'lucide-react'
+import { useI18n } from '../../context/I18nContext'
 import { IMAGES } from '../../config/images'
-import { CONTENT } from '../../data/content'
 import { fadeInUp, useScrollAnimationVariants } from '../../hooks/useScrollAnimation'
 import { GlassCard } from '../ui/GlassCard'
 import { SectionTitle } from '../ui/SectionTitle'
 
-const THUMBS = [
-  { src: IMAGES.amenityBreakfast, label: 'Petit-déjeuner' },
-  { src: IMAGES.amenityGarden, label: 'Jardin' },
-  { src: IMAGES.amenityParking, label: 'Parking' },
-  { src: IMAGES.amenityKitchen, label: 'Cuisine' },
-]
+const THUMB_SRC = {
+  breakfast: IMAGES.amenityBreakfast,
+  garden: IMAGES.amenityGarden,
+  parking: IMAGES.amenityParking,
+  kitchen: IMAGES.amenityKitchen,
+}
 
 function scrollToGallery() {
   document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' })
 }
 
 export function AmenitiesSection() {
+  const { t, messages } = useI18n()
   const v = useScrollAnimationVariants(fadeInUp)
   const reduced = useReducedMotion()
 
@@ -35,14 +36,17 @@ export function AmenitiesSection() {
         }}
       />
       <div className="relative mx-auto max-w-7xl px-4 md:px-8">
-        <SectionTitle label="Comfort" title="Amenities" />
+        <SectionTitle
+          label={messages.amenities.sectionLabel}
+          title={messages.amenities.sectionTitle}
+        />
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {CONTENT.amenities.map((item, i) => {
+          {messages.amenities.items.map((item, i) => {
             const Icon = Icons[item.icon] ?? Icons.Sparkles
             return (
               <motion.div
-                key={item.label}
+                key={`${item.icon}-${item.label}`}
                 variants={v}
                 initial="hidden"
                 whileInView="visible"
@@ -83,20 +87,20 @@ export function AmenitiesSection() {
           viewport={{ once: true, amount: 0.25 }}
           className="mt-14 flex flex-wrap justify-center gap-3 md:-space-x-5 md:gap-0 md:justify-end md:pr-2"
         >
-          {THUMBS.map((t, idx) => (
+          {messages.amenities.thumbs.map((thumb, idx) => (
             <motion.button
-              key={t.label}
+              key={thumb.key}
               type="button"
               variants={v}
               custom={idx}
               onClick={scrollToGallery}
               className="focus-ring relative overflow-hidden rounded-image border border-[var(--glass-border)] shadow-glass transition-transform hover:z-10 hover:scale-105 md:-ml-5 md:first:ml-0"
               style={{ width: 120, height: 80 }}
-              aria-label={`Voir la galerie — ${t.label}`}
+              aria-label={t('amenities.galleryAria', { label: thumb.label })}
             >
               <img
-                src={t.src}
-                alt={`B&B Catherina — ${t.label}`}
+                src={THUMB_SRC[thumb.key]}
+                alt={t('amenities.thumbAlt', { label: thumb.label })}
                 className="h-full w-full object-cover"
               />
             </motion.button>

@@ -1,4 +1,5 @@
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { I18nProvider } from './context/I18nContext'
 import { ThemeProvider } from './context/ThemeContext'
 import { Footer } from './components/layout/Footer'
 import { Navbar } from './components/layout/Navbar'
@@ -38,18 +39,20 @@ function HomePage() {
 export default function App() {
   return (
     <ThemeProvider>
-      <HashRouter>
-        <ScrollToTop />
-        <LoadingScreen>
-          <div className="relative min-h-screen overflow-x-hidden">
-            <BokehBackground />
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Routes>
-          </div>
-        </LoadingScreen>
-      </HashRouter>
+      <I18nProvider>
+        <HashRouter>
+          <ScrollToTop />
+          <LoadingScreen>
+            <div className="relative min-h-screen overflow-x-hidden">
+              <BokehBackground />
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </div>
+          </LoadingScreen>
+        </HashRouter>
+      </I18nProvider>
     </ThemeProvider>
   )
 }

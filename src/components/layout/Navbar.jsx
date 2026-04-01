@@ -1,18 +1,13 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { Leaf, Menu, X } from 'lucide-react'
-import { useEffect, useState } from 'react'
-import { CONTENT } from '../../data/content'
+import { useEffect, useMemo, useState } from 'react'
+import { useI18n } from '../../context/I18nContext'
 import { useActiveSection } from '../../hooks/useActiveSection'
 import { AnimatedButton } from '../ui/AnimatedButton'
+import { LanguageSwitcher } from '../ui/LanguageSwitcher'
 import { ThemeToggle } from '../ui/ThemeToggle'
 
-const NAV = [
-  { id: 'home', label: 'Home' },
-  { id: 'rooms', label: 'Rooms' },
-  { id: 'gallery', label: 'Gallery' },
-  { id: 'location', label: 'Location' },
-  { id: 'booking', label: 'Contact' },
-]
+const NAV_IDS = ['home', 'rooms', 'gallery', 'location', 'booking']
 
 function scrollToSection(id) {
   const el = document.getElementById(id)
@@ -20,9 +15,14 @@ function scrollToSection(id) {
 }
 
 export function Navbar() {
+  const { t, messages } = useI18n()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
-  const activeId = useActiveSection(NAV.map((n) => n.id))
+  const nav = useMemo(
+    () => NAV_IDS.map((id) => ({ id, label: messages.nav[id] })),
+    [messages.nav],
+  )
+  const activeId = useActiveSection(NAV_IDS)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 80)
@@ -61,7 +61,7 @@ export function Navbar() {
             type="button"
             onClick={() => scrollToSection('home')}
             className="focus-ring flex min-h-[44px] items-center gap-2 rounded-lg text-left"
-            aria-label="Accueil"
+            aria-label={t('a11y.brandHome')}
           >
             <Leaf
               className="h-6 w-6 text-[var(--accent)]"
@@ -69,15 +69,15 @@ export function Navbar() {
               strokeWidth={1.75}
             />
             <span className="font-display text-xl font-bold tracking-tight text-[var(--text-primary)] md:text-2xl">
-              {CONTENT.brand.name}
+              {messages.brand.name}
             </span>
           </button>
 
           <nav
             className="hidden items-center gap-10 lg:flex"
-            aria-label="Navigation principale"
+            aria-label={t('a11y.navMain')}
           >
-            {NAV.map((item, i) => (
+            {nav.map((item, i) => (
               <motion.button
                 key={item.id}
                 type="button"
@@ -103,18 +103,19 @@ export function Navbar() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <LanguageSwitcher />
             <ThemeToggle />
             <AnimatedButton
               className="hidden px-6 py-2.5 text-xs uppercase tracking-widest md:inline-flex"
               onClick={() => scrollToSection('booking')}
             >
-              Book now
+              {messages.nav.bookNow}
             </AnimatedButton>
             <button
               type="button"
               className="focus-ring flex h-11 w-11 items-center justify-center rounded-full border border-[var(--glass-border)] bg-[var(--glass)] lg:hidden"
-              aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
+              aria-label={open ? t('a11y.closeMenu') : t('a11y.openMenu')}
               aria-expanded={open}
               onClick={() => setOpen((v) => !v)}
             >
@@ -135,7 +136,7 @@ export function Navbar() {
             <button
               type="button"
               className="absolute inset-0 bg-black/40 backdrop-blur-sm"
-              aria-label="Fermer"
+              aria-label={t('a11y.closeOverlay')}
               onClick={() => setOpen(false)}
             />
             <motion.nav
@@ -144,9 +145,9 @@ export function Navbar() {
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 320, damping: 34 }}
               className="absolute right-0 top-0 flex h-full w-[min(100%,380px)] flex-col gap-2 border-l border-[var(--glass-border)] bg-[var(--glass)] p-8 pt-24 backdrop-blur-2xl"
-              aria-label="Menu mobile"
+              aria-label={t('a11y.navMobile')}
             >
-              {NAV.map((item) => (
+              {nav.map((item) => (
                 <button
                   key={item.id}
                   type="button"
@@ -170,7 +171,7 @@ export function Navbar() {
                   setOpen(false)
                 }}
               >
-                Book now
+                {messages.nav.bookNow}
               </AnimatedButton>
             </motion.nav>
           </motion.div>

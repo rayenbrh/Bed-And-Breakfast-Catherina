@@ -1,8 +1,8 @@
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { ChevronDown, MapPin } from 'lucide-react'
 import { useRef } from 'react'
+import { useI18n } from '../../context/I18nContext'
 import { IMAGES } from '../../config/images'
-import { CONTENT } from '../../data/content'
 import { AnimatedButton } from '../ui/AnimatedButton'
 
 function scrollToSection(id) {
@@ -10,6 +10,7 @@ function scrollToSection(id) {
 }
 
 export function HeroSection() {
+  const { t, messages } = useI18n()
   const ref = useRef(null)
   const reduced = useReducedMotion()
   const { scrollY } = useScroll({
@@ -39,7 +40,7 @@ export function HeroSection() {
         >
           <img
             src={IMAGES.heroBg}
-            alt="B&B Catherina — vue d’accueil en Toscane"
+            alt={messages.hero.imageAlt}
             className="h-full w-full object-cover"
           />
         </div>
@@ -59,21 +60,21 @@ export function HeroSection() {
           custom={0}
           className="font-accent text-xs uppercase tracking-[0.4em] text-[var(--accent)]"
         >
-          {CONTENT.hero.preTitle}
+          {messages.hero.preTitle}
         </motion.p>
         <motion.h1
           variants={fadeInUp}
           custom={1}
           className="font-display mt-3 text-[clamp(2.625rem,6vw,4.5rem)] font-semibold italic leading-none text-[var(--text-primary)]"
         >
-          {CONTENT.hero.title}
+          {messages.hero.title}
         </motion.h1>
         <motion.p
           variants={fadeInUp}
           custom={2}
           className="mt-4 text-base text-[var(--text-secondary)] md:text-lg"
         >
-          {CONTENT.hero.subtitle}
+          {messages.hero.subtitle}
         </motion.p>
         <motion.div
           variants={fadeInUp}
@@ -81,13 +82,13 @@ export function HeroSection() {
           className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <AnimatedButton onClick={() => scrollToSection('about')}>
-            {CONTENT.hero.cta.toUpperCase()}
+            {messages.hero.cta.toUpperCase()}
           </AnimatedButton>
           <AnimatedButton
             variant="ghost"
             onClick={() => scrollToSection('rooms')}
           >
-            {CONTENT.hero.ctaSecondary}
+            {messages.hero.ctaSecondary}
           </AnimatedButton>
         </motion.div>
       </motion.div>
@@ -104,7 +105,7 @@ export function HeroSection() {
         </span>
         <MapPin className="h-4 w-4 text-[var(--accent)]" aria-hidden />
         <span className="font-accent text-xs tracking-wide">
-          Ponsacco, Tuscany
+          {messages.hero.locationChip}
         </span>
       </motion.div>
 
@@ -112,7 +113,7 @@ export function HeroSection() {
         type="button"
         onClick={() => scrollToSection('about')}
         className="focus-ring absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-[var(--text-primary)]"
-        aria-label="Faire défiler vers le bas"
+        aria-label={t('a11y.scrollDown')}
       >
         <ChevronDown className="h-8 w-8 animate-scroll-bounce opacity-80" />
       </button>

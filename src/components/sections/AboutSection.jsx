@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
+import { useI18n } from '../../context/I18nContext'
 import { IMAGES } from '../../config/images'
-import { CONTENT } from '../../data/content'
 import {
   slideInLeft,
   slideInRight,
@@ -14,7 +14,7 @@ function scrollToSection(id) {
   document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
 }
 
-function useCountUp(target, suffix, enabled) {
+function useCountUp(target, enabled) {
   const num = Number(target)
   const isNumeric = !Number.isNaN(num)
   const [value, setValue] = useState(() => (isNumeric ? 0 : target))
@@ -35,14 +35,20 @@ function useCountUp(target, suffix, enabled) {
   }, [enabled, isNumeric, num])
 
   if (!isNumeric) return String(target)
-  if (suffix === 'mi') return `${value}mi`
-  if (suffix === 'min') return `${value}min`
   return `${value}`
 }
 
 function StatBlock({ stat }) {
+  const { t } = useI18n()
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 })
-  const display = useCountUp(stat.value, stat.suffix, inView)
+  const numStr = useCountUp(stat.value, inView)
+  const unit =
+    stat.suffixType === 'mi'
+      ? t('units.mi')
+      : stat.suffixType === 'min'
+        ? t('units.min')
+        : ''
+  const display = unit ? `${numStr}${unit}` : numStr
 
   return (
     <div ref={ref} className="text-center md:text-left">
@@ -55,6 +61,7 @@ function StatBlock({ stat }) {
 }
 
 export function AboutSection() {
+  const { messages } = useI18n()
   const vL = useScrollAnimationVariants(slideInLeft)
   const vR = useScrollAnimationVariants(slideInRight)
 
@@ -72,18 +79,18 @@ export function AboutSection() {
           className="order-2 md:order-1"
         >
           <p className="font-accent text-xs uppercase tracking-[0.35em] text-[var(--accent)]">
-            {CONTENT.about.label}
+            {messages.about.label}
           </p>
           <div className="mt-2 h-px w-16 bg-[var(--accent)]/80" />
           <h2 className="font-display mt-6 text-4xl font-semibold leading-tight text-[var(--text-primary)] md:text-5xl whitespace-pre-line">
-            {CONTENT.about.title}
+            {messages.about.title}
           </h2>
           <p className="mt-6 text-[var(--text-secondary)] leading-relaxed">
-            {CONTENT.about.body.trim()}
+            {messages.about.body.trim()}
           </p>
 
           <div className="mt-10 grid grid-cols-3 gap-6">
-            {CONTENT.about.stats.map((s) => (
+            {messages.about.stats.map((s) => (
               <StatBlock key={s.label} stat={s} />
             ))}
           </div>
@@ -93,7 +100,7 @@ export function AboutSection() {
             className="mt-10"
             onClick={() => scrollToSection('rooms')}
           >
-            {CONTENT.about.cta}
+            {messages.about.cta}
           </AnimatedButton>
         </motion.div>
 
@@ -113,14 +120,14 @@ export function AboutSection() {
             <div className="overflow-hidden rounded-image shadow-glass ring-1 ring-white/40">
               <img
                 src={IMAGES.aboutMain}
-                alt="B&B Catherina — espace de vie et détails"
+                alt={messages.about.imageMainAlt}
                 className="h-[340px] w-full object-cover md:h-[420px]"
               />
             </div>
             <div className="absolute -bottom-8 -left-4 w-[55%] max-w-[240px] -rotate-3 overflow-hidden rounded-image shadow-glass ring-1 ring-white/30 md:-left-8">
               <img
                 src={IMAGES.aboutAccent}
-                alt="B&B Catherina — détail chaleureux"
+                alt={messages.about.imageAccentAlt}
                 className="h-40 w-full object-cover md:h-48"
               />
             </div>

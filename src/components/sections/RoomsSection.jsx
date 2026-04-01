@@ -17,38 +17,37 @@ import {
   Wifi,
 } from 'lucide-react'
 import { useRef } from 'react'
+import { useI18n } from '../../context/I18nContext'
 import { IMAGES } from '../../config/images'
-import { CONTENT } from '../../data/content'
 import { fadeInUp, useScrollAnimationVariants } from '../../hooks/useScrollAnimation'
 import { GlassCard } from '../ui/GlassCard'
 import { SectionTitle } from '../ui/SectionTitle'
+
+const ROOM_ORDER = ['superior', 'deluxe']
 
 const ROOM_IMAGES = {
   superior: IMAGES.roomSuperior,
   deluxe: IMAGES.roomDeluxe,
 }
 
+/** Stable feature ids → Lucide icons (labels come from i18n). */
 const FEATURE_ICONS = {
-  'Garden View': Trees,
-  Kitchenette: Utensils,
-  'Private Bathroom': Bath,
-  'Free Wi-Fi': Wifi,
-  'Premium Furnishings': Monitor,
-  'Smart TV': Monitor,
+  gardenView: Trees,
+  kitchenette: Utensils,
+  privateBathroom: Bath,
+  freeWifi: Wifi,
+  premiumFurnishings: Monitor,
+  smartTv: Monitor,
 }
-
-const BADGES = [
-  { icon: Coffee, label: 'Delicious Breakfast' },
-  { icon: Wifi, label: 'Free Wi-Fi' },
-  { icon: Building2, label: 'City Center' },
-  { icon: Car, label: 'Free Parking' },
-]
 
 function scrollToBooking() {
   document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' })
 }
 
-function RoomCard({ room, index }) {
+function RoomCard({ roomKey, index }) {
+  const { t, messages } = useI18n()
+  const room = messages.rooms.items[roomKey]
+  const roomFeatures = messages.roomFeatures
   const ref = useRef(null)
   const reduced = useReducedMotion()
   const mx = useMotionValue(0)
@@ -78,7 +77,14 @@ function RoomCard({ room, index }) {
   }
 
   const v = useScrollAnimationVariants(fadeInUp)
-  const img = ROOM_IMAGES[room.id]
+  const img = ROOM_IMAGES[roomKey]
+
+  const ariaBooking = t('rooms.roomCtaAria', {
+    cta: room.cta,
+    roomName: room.name,
+  })
+
+  const imgAlt = t('rooms.roomImageAlt', { roomName: room.name })
 
   return (
     <motion.div
@@ -108,7 +114,7 @@ function RoomCard({ room, index }) {
           <div className="relative h-[200px] overflow-hidden rounded-t-card">
             <img
               src={img}
-              alt={`B&B Catherina — ${room.name}`}
+              alt={imgAlt}
               className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
             />
           </div>
@@ -120,15 +126,16 @@ function RoomCard({ room, index }) {
               {room.description.replace(/\s+/g, ' ')}
             </p>
             <div className="flex flex-wrap gap-2">
-              {room.features.map((f) => {
-                const Icon = FEATURE_ICONS[f] ?? Check
+              {room.featureIds.map((fid) => {
+                const Icon = FEATURE_ICONS[fid] ?? Check
+                const label = roomFeatures[fid] ?? fid
                 return (
                   <span
-                    key={f}
+                    key={fid}
                     className="inline-flex items-center gap-1.5 rounded-full border border-[var(--glass-border)] bg-white/20 px-3 py-1 text-xs text-[var(--text-primary)] dark:bg-black/20"
                   >
                     <Icon className="h-3.5 w-3.5 text-[var(--accent)]" />
-                    {f}
+                    {label}
                   </span>
                 )
               })}
@@ -137,7 +144,7 @@ function RoomCard({ room, index }) {
               type="button"
               onClick={scrollToBooking}
               className="group/btn focus-ring inline-flex min-h-[44px] items-center gap-1 rounded-lg text-sm font-semibold text-[var(--accent)]"
-              aria-label={`${room.cta} — ${room.name}, ouvrir la réservation`}
+              aria-label={ariaBooking}
             >
               <span className="room-underline">{room.cta}</span>
             </button>
@@ -149,6 +156,7 @@ function RoomCard({ room, index }) {
 }
 
 export function RoomsSection() {
+  const { messages } = useI18n()
   const vBadge = useScrollAnimationVariants(fadeInUp)
 
   return (
@@ -158,11 +166,14 @@ export function RoomsSection() {
       style={{ backgroundColor: 'var(--section-tint)' }}
     >
       <div className="mx-auto max-w-7xl px-4 md:px-8">
-        <SectionTitle label="Stay" title="Our Rooms" />
+        <SectionTitle
+          label={messages.rooms.sectionLabel}
+          title={messages.rooms.sectionTitle}
+        />
 
         <div className="grid gap-10 md:grid-cols-2">
-          {CONTENT.rooms.map((room, i) => (
-            <RoomCard key={room.id} room={room} index={i} />
+          {ROOM_ORDER.map((key, i) => (
+            <RoomCard key={key} roomKey={key} index={i} />
           ))}
         </div>
 
@@ -176,14 +187,25 @@ export function RoomsSection() {
           viewport={{ once: true, amount: 0.3 }}
           className="mt-16 flex flex-wrap justify-center gap-3 md:gap-4"
         >
-          {BADGES.map((b, i) => (
+          {messages.rooms.badges.map((b, i) => (
             <motion.span
-              key={b.label}
+              key={b.key}
               variants={vBadge}
               custom={i}
               className="inline-flex items-center gap-2 rounded-full border border-[var(--glass-border)] bg-[var(--glass)] px-4 py-2 text-xs font-medium text-[var(--text-primary)] shadow-glass backdrop-blur-md"
             >
-              <b.icon className="h-4 w-4 text-[var(--accent)]" />
+              {b.key === 'breakfast' && (
+                <Coffee className="h-4 w-4 text-[var(--accent)]" />
+              )}
+              {b.key === 'wifi' && (
+                <Wifi className="h-4 w-4 text-[var(--accent)]" />
+              )}
+              {b.key === 'center' && (
+                <Building2 className="h-4 w-4 text-[var(--accent)]" />
+              )}
+              {b.key === 'parking' && (
+                <Car className="h-4 w-4 text-[var(--accent)]" />
+              )}
               {b.label}
             </motion.span>
           ))}

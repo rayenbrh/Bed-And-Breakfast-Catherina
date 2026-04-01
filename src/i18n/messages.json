@@ -1,0 +1,410 @@
+{
+  "en": {
+    "brand": {
+      "name": "B&B Catherina",
+      "tagline": "Relax in the heart of Tuscany",
+      "address": "Via R. Sanzio, 64, Ponsacco, 56038 Pisa, Tuscany, Italy",
+      "email": "info@bbcatherina.it",
+      "phone": "+39 XXX XXX XXXX"
+    },
+    "nav": {
+      "home": "Home",
+      "rooms": "Rooms",
+      "gallery": "Gallery",
+      "location": "Location",
+      "booking": "Contact",
+      "bookNow": "Book now"
+    },
+    "hero": {
+      "preTitle": "Welcome to",
+      "title": "B&B Catherina",
+      "subtitle": "A cozy retreat in the heart of Tuscany — just 18 miles from Pisa",
+      "cta": "Discover More",
+      "ctaSecondary": "View Rooms",
+      "locationChip": "Ponsacco, Tuscany",
+      "imageAlt": "B&B Catherina — welcome view in Tuscany"
+    },
+    "about": {
+      "label": "Our Story",
+      "title": "A Cozy Retreat\nin Ponsacco",
+      "body": "Nestled in the charming town of Ponsacco in the province of Pisa, Bed and Breakfast Catherina offers a warm and intimate escape in the heart of Tuscany. Enjoy the tranquility of two private gardens, spacious apartment-style rooms, and the warmth of a home-cooked sweet and savory breakfast served daily.",
+      "cta": "Learn More",
+      "stats": [
+        { "value": "2", "suffixType": "", "label": "Private Gardens" },
+        { "value": "18", "suffixType": "mi", "label": "From Pisa" },
+        { "value": "25", "suffixType": "min", "label": "To Coast" }
+      ],
+      "imageMainAlt": "B&B Catherina — living space and details",
+      "imageAccentAlt": "B&B Catherina — warm detail"
+    },
+    "rooms": {
+      "sectionLabel": "Stay",
+      "sectionTitle": "Our Rooms",
+      "badges": [
+        { "key": "breakfast", "label": "Delicious Breakfast" },
+        { "key": "wifi", "label": "Free Wi-Fi" },
+        { "key": "center", "label": "City Center" },
+        { "key": "parking", "label": "Free Parking" }
+      ],
+      "items": {
+        "superior": {
+          "name": "Superior Room",
+          "description": "Spacious and bright, the Superior Room features garden views, a fully equipped kitchenette, private bathroom, flat-screen TV, and free Wi-Fi.",
+          "featureIds": ["gardenView", "kitchenette", "privateBathroom", "freeWifi"],
+          "cta": "View Room"
+        },
+        "deluxe": {
+          "name": "Deluxe Room",
+          "description": "The Deluxe Room offers a refined and elegant space with premium furnishings, garden views, and all the comforts of home in a luxurious setting.",
+          "featureIds": ["gardenView", "premiumFurnishings", "privateBathroom", "smartTv"],
+          "cta": "View Room"
+        }
+      },
+      "roomImageAlt": "B&B Catherina — {roomName}",
+      "roomCtaAria": "{cta} — {roomName}, open booking"
+    },
+    "roomFeatures": {
+      "gardenView": "Garden View",
+      "kitchenette": "Kitchenette",
+      "privateBathroom": "Private Bathroom",
+      "freeWifi": "Free Wi-Fi",
+      "premiumFurnishings": "Premium Furnishings",
+      "smartTv": "Smart TV"
+    },
+    "amenities": {
+      "sectionLabel": "Comfort",
+      "sectionTitle": "Amenities",
+      "items": [
+        {
+          "icon": "UtensilsCrossed",
+          "label": "Delicious Breakfast",
+          "desc": "Sweet & savory served daily"
+        },
+        { "icon": "Wifi", "label": "Free Wi-Fi", "desc": "High-speed throughout" },
+        {
+          "icon": "MapPin",
+          "label": "City Center Location",
+          "desc": "Heart of Ponsacco"
+        },
+        { "icon": "Car", "label": "Free Parking", "desc": "Private on-site parking" },
+        {
+          "icon": "TreePine",
+          "label": "Two Gardens",
+          "desc": "Lush private green spaces"
+        },
+        {
+          "icon": "KeyRound",
+          "label": "Private Entrance",
+          "desc": "Your own entrance key"
+        }
+      ],
+      "thumbs": [
+        { "key": "breakfast", "label": "Breakfast" },
+        { "key": "garden", "label": "Garden" },
+        { "key": "parking", "label": "Parking" },
+        { "key": "kitchen", "label": "Kitchen" }
+      ],
+      "galleryAria": "View gallery — {label}",
+      "thumbAlt": "B&B Catherina — {label}"
+    },
+    "gallery": {
+      "sectionLabel": "Moments",
+      "sectionTitle": "Gallery",
+      "items": [
+        { "key": "gallery1", "label": "Room" },
+        { "key": "gallery2", "label": "Common area" },
+        { "key": "gallery3", "label": "Garden" },
+        { "key": "gallery4", "label": "Bathroom" },
+        { "key": "gallery5", "label": "Breakfast" },
+        { "key": "gallery6", "label": "Tuscany" }
+      ],
+      "imageAlt": "B&B Catherina — {label}"
+    },
+    "location": {
+      "label": "Getting Here",
+      "title": "Perfectly Located\nin Tuscany",
+      "description": "Situated in Ponsacco, Tuscany, B&B Catherina is your ideal base for exploring the region. Only 7 km from Pontedera Train Station, 18 miles from Pisa Cathedral, and 30 minutes from the Mediterranean Coast.",
+      "distances": [
+        { "icon": "Train", "label": "Pontedera Train Station", "value": "7 km" },
+        { "icon": "Landmark", "label": "Pisa Cathedral", "value": "~30 km" },
+        { "icon": "Waves", "label": "Mediterranean Coast", "value": "~25 min" },
+        { "icon": "Ship", "label": "Livorno Port", "value": "~30 min" },
+        { "icon": "Route", "label": "Florence-Pisa Motorway", "value": "~5 km" }
+      ],
+      "mapTitle": "Map — B&B Catherina, Ponsacco",
+      "photoAlt": "B&B Catherina — local view Ponsacco"
+    },
+    "testimonials": {
+      "sectionLabel": "Reviews",
+      "sectionTitle": "What Our Guests Say",
+      "prevAria": "Previous testimonial",
+      "nextAria": "Next testimonial",
+      "items": [
+        {
+          "name": "Maria R.",
+          "country": "Germany",
+          "flag": "🇩🇪",
+          "rating": 5,
+          "text": "A truly peaceful retreat. The garden views from our room were stunning and the breakfast was absolutely delicious. We will definitely return!"
+        },
+        {
+          "name": "James & Lucy",
+          "country": "United Kingdom",
+          "flag": "🇬🇧",
+          "rating": 5,
+          "text": "Perfect location for exploring Tuscany. The hosts were incredibly welcoming and the private apartment felt like a home away from home."
+        },
+        {
+          "name": "Sophie L.",
+          "country": "France",
+          "flag": "🇫🇷",
+          "rating": 5,
+          "text": "Charming, cozy, and so close to Pisa. The breakfast was wonderful and the parking is a huge bonus. Highly recommend!"
+        }
+      ]
+    },
+    "booking": {
+      "title": "Experience the Charm\nof Tuscany",
+      "subtitle": "Book your stay at B&B Catherina and wake up to garden views and a freshly prepared Tuscan breakfast.",
+      "checkIn": "From 14:00",
+      "checkOut": "Until 10:00",
+      "checkInLabel": "Check-in:",
+      "checkOutLabel": "Check-out:",
+      "note": "Full payment due on arrival. Please inform expected arrival time.",
+      "cta": "Book Your Stay",
+      "imageAlt": "B&B Catherina — atmosphere to book your stay"
+    },
+    "footer": {
+      "quickLinks": "Quick links",
+      "contact": "Contact",
+      "copyright": "© {year} B&B Catherina. All rights reserved.",
+      "locationLine": "Ponsacco, Tuscany, Italy 🇮🇹",
+      "socialInstagram": "Instagram",
+      "socialFacebook": "Facebook",
+      "socialTripAdvisor": "TripAdvisor"
+    },
+    "a11y": {
+      "skipToContent": "Skip to main content",
+      "navMain": "Main navigation",
+      "navMobile": "Mobile menu",
+      "brandHome": "Home",
+      "openMenu": "Open menu",
+      "closeMenu": "Close menu",
+      "closeOverlay": "Close",
+      "scrollDown": "Scroll down",
+      "themeLight": "Switch to light theme",
+      "themeDark": "Switch to dark theme",
+      "language": "Language"
+    },
+    "units": {
+      "mi": "mi",
+      "min": "min"
+    }
+  },
+  "it": {
+    "brand": {
+      "name": "B&B Catherina",
+      "tagline": "Relax nel cuore della Toscana",
+      "address": "Via R. Sanzio, 64, Ponsacco, 56038 Pisa, Toscana, Italia",
+      "email": "info@bbcatherina.it",
+      "phone": "+39 XXX XXX XXXX"
+    },
+    "nav": {
+      "home": "Home",
+      "rooms": "Camere",
+      "gallery": "Galleria",
+      "location": "Dove siamo",
+      "booking": "Contatti",
+      "bookNow": "Prenota"
+    },
+    "hero": {
+      "preTitle": "Benvenuti a",
+      "title": "B&B Catherina",
+      "subtitle": "Un accogliente rifugio nel cuore della Toscana — a circa 30 km da Pisa",
+      "cta": "Scopri di più",
+      "ctaSecondary": "Vedi le camere",
+      "locationChip": "Ponsacco, Toscana",
+      "imageAlt": "B&B Catherina — vista di benvenuto in Toscana"
+    },
+    "about": {
+      "label": "La nostra storia",
+      "title": "Un rifugio accogliente\na Ponsacco",
+      "body": "Nel centro del grazioso comune di Ponsacco, in provincia di Pisa, il Bed and Breakfast Catherina offre una pausa calda e riservata nel cuore della Toscana. Godetevi la quiete di due giardini privati, camere ampie in stile appartamento e la cura di una colazione dolce e salata preparata ogni mattina.",
+      "cta": "Approfondisci",
+      "stats": [
+        { "value": "2", "suffixType": "", "label": "Giardini privati" },
+        { "value": "18", "suffixType": "mi", "label": "Da Pisa" },
+        { "value": "25", "suffixType": "min", "label": "Verso la costa" }
+      ],
+      "imageMainAlt": "B&B Catherina — spazi comuni e dettagli",
+      "imageAccentAlt": "B&B Catherina — dettaglio accogliente"
+    },
+    "rooms": {
+      "sectionLabel": "Soggiorno",
+      "sectionTitle": "Le nostre camere",
+      "badges": [
+        { "key": "breakfast", "label": "Colazione ricca" },
+        { "key": "wifi", "label": "Wi-Fi gratuito" },
+        { "key": "center", "label": "Centro città" },
+        { "key": "parking", "label": "Parcheggio gratuito" }
+      ],
+      "items": {
+        "superior": {
+          "name": "Camera Superior",
+          "description": "Ampia e luminosa, la Camera Superior offre vista giardino, angolo cottura attrezzato, bagno privato, TV a schermo piatto e Wi-Fi gratuito.",
+          "featureIds": ["gardenView", "kitchenette", "privateBathroom", "freeWifi"],
+          "cta": "Dettagli camera"
+        },
+        "deluxe": {
+          "name": "Camera Deluxe",
+          "description": "La Camera Deluxe propone uno spazio curato ed elegante, arredi di qualità, vista giardino e tutti i comfort per un soggiorno di charme.",
+          "featureIds": ["gardenView", "premiumFurnishings", "privateBathroom", "smartTv"],
+          "cta": "Dettagli camera"
+        }
+      },
+      "roomImageAlt": "B&B Catherina — {roomName}",
+      "roomCtaAria": "{cta} — {roomName}, apri prenotazione"
+    },
+    "roomFeatures": {
+      "gardenView": "Vista giardino",
+      "kitchenette": "Angolo cottura",
+      "privateBathroom": "Bagno privato",
+      "freeWifi": "Wi-Fi gratuito",
+      "premiumFurnishings": "Arredi di pregio",
+      "smartTv": "Smart TV"
+    },
+    "amenities": {
+      "sectionLabel": "Comfort",
+      "sectionTitle": "Servizi",
+      "items": [
+        {
+          "icon": "UtensilsCrossed",
+          "label": "Colazione ricca",
+          "desc": "Dolce e salato ogni mattina"
+        },
+        { "icon": "Wifi", "label": "Wi-Fi gratuito", "desc": "Connessione ad alta velocità" },
+        {
+          "icon": "MapPin",
+          "label": "Posizione centrale",
+          "desc": "Nel cuore di Ponsacco"
+        },
+        {
+          "icon": "Car",
+          "label": "Parcheggio gratuito",
+          "desc": "Posto auto in struttura"
+        },
+        {
+          "icon": "TreePine",
+          "label": "Due giardini",
+          "desc": "Spazi verdi riservati"
+        },
+        {
+          "icon": "KeyRound",
+          "label": "Ingresso indipendente",
+          "desc": "Chiave dedicata"
+        }
+      ],
+      "thumbs": [
+        { "key": "breakfast", "label": "Colazione" },
+        { "key": "garden", "label": "Giardino" },
+        { "key": "parking", "label": "Parcheggio" },
+        { "key": "kitchen", "label": "Cucina" }
+      ],
+      "galleryAria": "Apri galleria — {label}",
+      "thumbAlt": "B&B Catherina — {label}"
+    },
+    "gallery": {
+      "sectionLabel": "Momenti",
+      "sectionTitle": "Galleria",
+      "items": [
+        { "key": "gallery1", "label": "Camera" },
+        { "key": "gallery2", "label": "Spazi comuni" },
+        { "key": "gallery3", "label": "Giardino" },
+        { "key": "gallery4", "label": "Bagno" },
+        { "key": "gallery5", "label": "Colazione" },
+        { "key": "gallery6", "label": "Toscana" }
+      ],
+      "imageAlt": "B&B Catherina — {label}"
+    },
+    "location": {
+      "label": "Come arrivare",
+      "title": "Posizione ideale\nin Toscana",
+      "description": "Situato a Ponsacco, il B&B Catherina è la base perfetta per esplorare la regione: a soli 7 km dalla stazione di Pontedera, a circa 30 km dal Duomo di Pisa e a circa 25 minuti dalla costa tirrenica.",
+      "distances": [
+        { "icon": "Train", "label": "Stazione di Pontedera", "value": "7 km" },
+        { "icon": "Landmark", "label": "Duomo di Pisa", "value": "~30 km" },
+        { "icon": "Waves", "label": "Costa mediterranea", "value": "~25 min" },
+        { "icon": "Ship", "label": "Porto di Livorno", "value": "~30 min" },
+        { "icon": "Route", "label": "Autostrada Firenze-Pisa", "value": "~5 km" }
+      ],
+      "mapTitle": "Mappa — B&B Catherina, Ponsacco",
+      "photoAlt": "B&B Catherina — scorcio locale, Ponsacco"
+    },
+    "testimonials": {
+      "sectionLabel": "Recensioni",
+      "sectionTitle": "Cosa dicono gli ospiti",
+      "prevAria": "Recensione precedente",
+      "nextAria": "Recensione successiva",
+      "items": [
+        {
+          "name": "Maria R.",
+          "country": "Germania",
+          "flag": "🇩🇪",
+          "rating": 5,
+          "text": "Una vacanza davvero tranquilla. La vista sul giardino dalla camera era splendida e la colazione eccellente. Torneremo senz'altro!"
+        },
+        {
+          "name": "James & Lucy",
+          "country": "Regno Unito",
+          "flag": "🇬🇧",
+          "rating": 5,
+          "text": "Posizione ideale per visitare la Toscana. I gestori sono stati molto accoglienti e l'appartamento privato ha offerto tutta la comodità di una seconda casa."
+        },
+        {
+          "name": "Sophie L.",
+          "country": "Francia",
+          "flag": "🇫🇷",
+          "rating": 5,
+          "text": "Struttura accogliente e vicina a Pisa. Colazione curata e parcheggio molto comodo. Consigliatissimo!"
+        }
+      ]
+    },
+    "booking": {
+      "title": "Vivi il fascino\ndella Toscana",
+      "subtitle": "Prenotate il vostro soggiorno al B&B Catherina e svegliatevi con vista giardino e una colazione toscana preparata al momento.",
+      "checkIn": "Dalle 14:00",
+      "checkOut": "Entro le 10:00",
+      "checkInLabel": "Check-in:",
+      "checkOutLabel": "Check-out:",
+      "note": "Saldo all'arrivo. Si prega di comunicare l'orario di arrivo previsto.",
+      "cta": "Prenota il soggiorno",
+      "imageAlt": "B&B Catherina — atmosfera per prenotare il soggiorno"
+    },
+    "footer": {
+      "quickLinks": "Link rapidi",
+      "contact": "Contatti",
+      "copyright": "© {year} B&B Catherina. Tutti i diritti riservati.",
+      "locationLine": "Ponsacco, Toscana, Italia 🇮🇹",
+      "socialInstagram": "Instagram",
+      "socialFacebook": "Facebook",
+      "socialTripAdvisor": "TripAdvisor"
+    },
+    "a11y": {
+      "skipToContent": "Vai al contenuto principale",
+      "navMain": "Navigazione principale",
+      "navMobile": "Menu mobile",
+      "brandHome": "Home",
+      "openMenu": "Apri menu",
+      "closeMenu": "Chiudi menu",
+      "closeOverlay": "Chiudi",
+      "scrollDown": "Scorri verso il basso",
+      "themeLight": "Attiva tema chiaro",
+      "themeDark": "Attiva tema scuro",
+      "language": "Lingua"
+    },
+    "units": {
+      "mi": "mi",
+      "min": "min"
+    }
+  }
+}

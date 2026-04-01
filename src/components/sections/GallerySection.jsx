@@ -4,22 +4,16 @@ import { Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import 'swiper/css/pagination'
+import { useI18n } from '../../context/I18nContext'
 import { IMAGES } from '../../config/images'
 import { fadeInUp, useScrollAnimationVariants } from '../../hooks/useScrollAnimation'
 import { SectionTitle } from '../ui/SectionTitle'
 
-const GALLERY = [
-  { key: 'gallery1', src: IMAGES.gallery1, label: 'Chambre' },
-  { key: 'gallery2', src: IMAGES.gallery2, label: 'Espace commun' },
-  { key: 'gallery3', src: IMAGES.gallery3, label: 'Jardin' },
-  { key: 'gallery4', src: IMAGES.gallery4, label: 'Salle de bain' },
-  { key: 'gallery5', src: IMAGES.gallery5, label: 'Petit-déjeuner' },
-  { key: 'gallery6', src: IMAGES.gallery6, label: 'Toscane' },
-]
-
 export function GallerySection() {
+  const { t, messages } = useI18n()
   const [mobile, setMobile] = useState(false)
   const v = useScrollAnimationVariants(fadeInUp)
+  const galleryItems = messages.gallery.items
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 767px)')
@@ -32,7 +26,10 @@ export function GallerySection() {
   return (
     <section id="gallery" className="relative z-10 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
-        <SectionTitle label="Moments" title="Gallery" />
+        <SectionTitle
+          label={messages.gallery.sectionLabel}
+          title={messages.gallery.sectionTitle}
+        />
 
         {mobile ? (
           <Swiper
@@ -43,7 +40,7 @@ export function GallerySection() {
             pagination={{ clickable: true }}
             className="!pb-10"
           >
-            {GALLERY.map((g, i) => (
+            {galleryItems.map((g, i) => (
               <SwiperSlide key={g.key}>
                 <motion.figure
                   variants={v}
@@ -54,8 +51,8 @@ export function GallerySection() {
                   className="group relative overflow-hidden rounded-image border border-[var(--glass-border)] shadow-glass"
                 >
                   <img
-                    src={g.src}
-                    alt={`B&B Catherina — ${g.label}`}
+                    src={IMAGES[g.key]}
+                    alt={t('gallery.imageAlt', { label: g.label })}
                     className="h-[260px] w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <figcaption className="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/55 to-transparent p-4 text-sm font-medium text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -67,7 +64,7 @@ export function GallerySection() {
           </Swiper>
         ) : (
           <div className="grid auto-rows-[200px] grid-cols-2 gap-4 md:grid-cols-3 md:gap-6 lg:auto-rows-[220px]">
-            {GALLERY.map((g, i) => {
+            {galleryItems.map((g, i) => {
               const layout =
                 i === 0
                   ? 'col-span-2 row-span-2 md:col-span-1'
@@ -85,8 +82,8 @@ export function GallerySection() {
                   className={`group relative overflow-hidden rounded-image border border-[var(--glass-border)] shadow-glass ${layout}`}
                 >
                   <img
-                    src={g.src}
-                    alt={`B&B Catherina — ${g.label}`}
+                    src={IMAGES[g.key]}
+                    alt={t('gallery.imageAlt', { label: g.label })}
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   />
                   <figcaption className="pointer-events-none absolute inset-0 flex items-end bg-gradient-to-t from-black/50 to-transparent p-4 text-sm text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100">

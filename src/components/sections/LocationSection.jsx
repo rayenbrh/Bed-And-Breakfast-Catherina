@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion'
 import * as Icons from 'lucide-react'
+import { useI18n } from '../../context/I18nContext'
 import { IMAGES } from '../../config/images'
-import { CONTENT } from '../../data/content'
+import { SITE_CONFIG } from '../../data/siteConfig'
 import {
   slideInLeft,
   slideInRight,
@@ -11,6 +12,8 @@ import { GlassCard } from '../ui/GlassCard'
 import { SectionTitle } from '../ui/SectionTitle'
 
 export function LocationSection() {
+  const { messages } = useI18n()
+  const loc = messages.location
   const vL = useScrollAnimationVariants(slideInLeft)
   const vR = useScrollAnimationVariants(slideInRight)
 
@@ -27,17 +30,13 @@ export function LocationSection() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.25 }}
         >
-          <SectionTitle
-            align="left"
-            label={CONTENT.location.label}
-            title={CONTENT.location.title}
-          />
+          <SectionTitle align="left" label={loc.label} title={loc.title} />
           <p className="text-[var(--text-secondary)] leading-relaxed">
-            {CONTENT.location.description.trim()}
+            {loc.description.trim()}
           </p>
 
           <ul className="mt-10 space-y-4">
-            {CONTENT.location.distances.map((d, i) => {
+            {loc.distances.map((d, i) => {
               const Icon = Icons[d.icon] ?? Icons.MapPin
               return (
                 <motion.li
@@ -71,14 +70,10 @@ export function LocationSection() {
           viewport={{ once: true, amount: 0.2 }}
           className="space-y-6"
         >
-          {/*
-            Remplacez mapEmbedUrl dans src/data/content.js par l’URL d’intégration
-            Google Maps officielle pour Via R. Sanzio, 64, Ponsacco (menu Partager > Intégrer une carte).
-          */}
           <GlassCard className="overflow-hidden p-0">
             <iframe
-              title="Carte — B&B Catherina, Ponsacco"
-              src={CONTENT.location.mapEmbedUrl}
+              title={loc.mapTitle}
+              src={SITE_CONFIG.mapEmbedUrl}
               className="h-[320px] w-full md:h-[380px]"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -87,7 +82,7 @@ export function LocationSection() {
           <div className="overflow-hidden rounded-image shadow-glass ring-1 ring-white/30">
             <img
               src={IMAGES.locationPhoto}
-              alt="B&B Catherina — vue locale Ponsacco"
+              alt={loc.photoAlt}
               className="h-48 w-full object-cover md:h-56"
             />
           </div>

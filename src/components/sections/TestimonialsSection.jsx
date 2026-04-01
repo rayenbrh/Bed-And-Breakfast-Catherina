@@ -4,19 +4,21 @@ import { useRef } from 'react'
 import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
-import { CONTENT } from '../../data/content'
+import { useI18n } from '../../context/I18nContext'
 import { fadeInUp, useScrollAnimationVariants } from '../../hooks/useScrollAnimation'
 import { GlassCard } from '../ui/GlassCard'
 import { SectionTitle } from '../ui/SectionTitle'
 
 export function TestimonialsSection() {
+  const { messages } = useI18n()
+  const ts = messages.testimonials
   const swiperRef = useRef(null)
   const v = useScrollAnimationVariants(fadeInUp)
 
   return (
     <section id="testimonials" className="relative z-10 py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-4 md:px-8">
-        <SectionTitle label="Reviews" title="What Our Guests Say" />
+        <SectionTitle label={ts.sectionLabel} title={ts.sectionTitle} />
 
         <motion.div
           variants={v}
@@ -41,11 +43,11 @@ export function TestimonialsSection() {
             }}
             className="testimonials-swiper !pb-6"
           >
-            {CONTENT.testimonials.map((t) => (
-              <SwiperSlide key={t.name} className="!h-auto">
+            {ts.items.map((item) => (
+              <SwiperSlide key={item.name} className="!h-auto">
                 <GlassCard className="mx-auto flex h-full min-h-full max-w-xl flex-col p-8">
                   <div className="flex gap-1 text-[var(--accent)]">
-                    {Array.from({ length: t.rating }).map((_, i) => (
+                    {Array.from({ length: item.rating }).map((_, i) => (
                       <Star
                         key={i}
                         className="h-5 w-5 fill-current"
@@ -54,14 +56,14 @@ export function TestimonialsSection() {
                     ))}
                   </div>
                   <blockquote className="font-display mt-4 text-lg italic leading-relaxed text-[var(--text-primary)]">
-                    “{t.text.trim()}”
+                    “{item.text.trim()}”
                   </blockquote>
                   <footer className="mt-6 flex items-center justify-between text-sm text-[var(--text-secondary)]">
                     <span className="font-medium text-[var(--text-primary)]">
-                      {t.name}
+                      {item.name}
                     </span>
                     <span>
-                      {t.country} {t.flag}
+                      {item.country} {item.flag}
                     </span>
                   </footer>
                 </GlassCard>
@@ -72,7 +74,7 @@ export function TestimonialsSection() {
           <div className="mt-8 flex justify-center gap-4">
             <button
               type="button"
-              aria-label="Témoignage précédent"
+              aria-label={ts.prevAria}
               className="focus-ring flex h-12 w-12 items-center justify-center rounded-full border border-[var(--glass-border)] bg-[var(--glass)] text-[var(--text-primary)] shadow-glass backdrop-blur-md"
               onClick={() => swiperRef.current?.slidePrev()}
             >
@@ -80,7 +82,7 @@ export function TestimonialsSection() {
             </button>
             <button
               type="button"
-              aria-label="Témoignage suivant"
+              aria-label={ts.nextAria}
               className="focus-ring flex h-12 w-12 items-center justify-center rounded-full border border-[var(--glass-border)] bg-[var(--glass)] text-[var(--text-primary)] shadow-glass backdrop-blur-md"
               onClick={() => swiperRef.current?.slideNext()}
             >

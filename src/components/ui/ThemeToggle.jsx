@@ -1,16 +1,18 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { Moon, Sun } from 'lucide-react'
+import { useI18n } from '../../context/I18nContext'
 import { useTheme } from '../../context/ThemeContext'
 
 export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme()
+  const { t } = useI18n()
 
   return (
     <motion.button
       type="button"
       onClick={toggleTheme}
-      aria-label={theme === 'dark' ? 'Activer le thème clair' : 'Activer le thème sombre'}
-      className="focus-ring flex h-11 w-11 items-center justify-center rounded-full border border-[var(--glass-border)] bg-[var(--glass)] text-[var(--text-primary)] backdrop-blur-md"
+      aria-label={theme === 'dark' ? t('a11y.themeLight') : t('a11y.themeDark')}
+      className="focus-ring flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--glass-border)] bg-[var(--glass)] text-[var(--text-primary)] backdrop-blur-md"
       whileHover={{ scale: 1.06 }}
       whileTap={{ scale: 0.95 }}
     >
