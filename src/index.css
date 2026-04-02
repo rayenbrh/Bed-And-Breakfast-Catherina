@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Nunito:wght@500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -202,4 +202,31 @@ body {
 .testimonials-swiper .swiper-slide {
   height: auto;
   display: flex;
+}
+
+/* WhatsApp floating button — pulse ring (décoratif, centré sur tout le bouton) */
+@keyframes whatsapp-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.35;
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}
+
+.whatsapp-pulse-ring {
+  z-index: 0;
+  flex-shrink: 0;
+  transform-origin: center center;
+  background: rgba(37, 211, 102, 0.28);
+  animation: whatsapp-pulse 2.5s infinite ease-out;
+  backface-visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-pulse-ring {
+    animation: none;
+  }
 }

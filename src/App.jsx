@@ -15,6 +15,7 @@ import { LocationSection } from './components/sections/LocationSection'
 import { RoomsSection } from './components/sections/RoomsSection'
 import { TestimonialsSection } from './components/sections/TestimonialsSection'
 import { BokehBackground } from './components/ui/BokehBackground'
+import WhatsAppButton from './components/ui/WhatsAppButton'
 
 function HomePage() {
   return (
@@ -32,6 +33,7 @@ function HomePage() {
         <BookingSection />
       </main>
       <Footer />
+      <WhatsAppButton />
     </>
   )
 }

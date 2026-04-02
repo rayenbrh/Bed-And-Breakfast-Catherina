@@ -44,6 +44,10 @@ Après modification, mettez à jour aussi **`index.html`** (balises `og:image`, 
 
 Les textes sont dans **`src/data/content.js`** (y compris l’URL d’iframe Google Maps : `mapEmbedUrl`).
 
+## Numéro WhatsApp (bouton flottant)
+
+Pour changer le numéro WhatsApp du bouton fixe en bas à droite, éditez **`src/config/contact.js`** → champ **`whatsappNumber`**. Utilisez uniquement des **chiffres** (indicatif pays inclus, ex. Italie `39…`) : pas de lettres ni de `X` dans la valeur, sinon le lien `wa.me` peut renvoyer une **erreur 404** WhatsApp. Vous pouvez aussi coller un numéro avec `+`, espaces ou tirets : il est normalisé automatiquement. Les messages préremplis EN/IT et l’affichage téléphone sont dans le même fichier.
+
 ## PWA
 
 Le plugin `vite-plugin-pwa` génère le service worker à la compilation. Les icônes du manifeste pointent vers les mêmes URLs que dans `src/config/images.js`.
